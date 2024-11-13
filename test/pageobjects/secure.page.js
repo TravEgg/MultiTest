@@ -11,6 +11,13 @@ class SecurePage extends Page {
     get productPage() {
         return $('.app_logo');
     }
+    get errorPopup() {
+        return $('h3')
+    }
+
+    open () {
+        return super.open();
+    }
 }
 
 export default new SecurePage();
