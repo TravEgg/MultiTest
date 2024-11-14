@@ -27,7 +27,7 @@ class LoginPage extends Page {
 
     /**
      * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
+     * e.g. to login using corect username and password and then again with a bad password
      */
     async login (username, password) {
         await this.inputUsername.setValue(username);
@@ -43,7 +43,7 @@ class LoginPage extends Page {
 //Positive Loop for all user logins 
     async loginLoop (password) {
         for (let i = 0; i < this.usernames.length; i++){
-        await securePage.open()
+        await this.open()
         await this.login(this.usernames[i], password);
             if (this.usernames[i]=='locked_out_user') {
             await expect(securePage.errorPopup).toBeExisting()
@@ -57,6 +57,7 @@ class LoginPage extends Page {
         }
     }
 }
+//Negative Loop for all user logins using a bad password
     async badLoginLoop (password) {
         for (let i = 0; i < this.usernames.length; i++){
         await securePage.open()
