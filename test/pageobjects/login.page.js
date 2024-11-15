@@ -45,8 +45,16 @@ class LoginPage extends Page {
         return $('a#about_sidebar_link')
     }
 
+    get menuLogout() {
+        return $('a#logout_sidebar_link')
+    }
+
+    get menuReset() {
+        return $('a#reset_sidebar_link')
+    }
+
     get saucePage() {
-        return $('div.MuiBox-root css-lwb5go')
+        return $('a[href="/"]')
         //(browser.url('https://www.saucedemo.com/'))
         //MuiBox-root css-lwb5go
     }
@@ -76,8 +84,19 @@ class LoginPage extends Page {
             expect.stringContaining('Swag Labs'))
         await this.menuAbout.click();
         await expect(this.saucePage).toBeExisting
-        await window.history.back();
-
+        await browser.back();
+        await this.menuHamb.click();
+        await this.menuLogout.click();
+        await this.login(username, password);
+        await expect(this.productPage).toBeExisting()
+        await expect(this.productPage).toHaveText(
+            expect.stringContaining('Swag Labs'))
+        await this.menuHamb.click();
+        await this.menuReset.click();
+        await this.cancelHamb.click();
+        await browser.pause(2000)
+        await $('.bm-burger-button').click();
+        await browser.pause(2000)
     }
 
     /**
