@@ -2,11 +2,12 @@ import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals'
 import Page from './page.js';
 import { expect } from '@wdio/globals'
+import LoginPage from './login.page.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends Page {
+class Hamburger {
     /**
      * define selectors using getter methods
      */
@@ -29,7 +30,7 @@ class LoginPage extends Page {
         return $('h3')
     }
 
-    /*get menuHamb() {
+    get menuHamb() {
         return $('.bm-burger-button')
     }
 
@@ -57,25 +58,10 @@ class LoginPage extends Page {
         return $('a[href="/"]')
         //(browser.url('https://www.saucedemo.com/'))
         //MuiBox-root css-lwb5go
-    }*/
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using corect username and password and then again with a bad password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
     }
 
-    async firstLogin(username, password){
-        await this.open()
-        await this.login(username, password);
-        await expect(this.productPage).toBeExisting()
-        await expect(this.productPage).toHaveText(
-            expect.stringContaining('Swag Labs'))
-        }
-        /*await this.menuHamb.click();
+    async HambMenu() {
+        await this.menuHamb.click();
         //test the Cancel Button in the hamburger menu
         await this.cancelHamb.click();
         await this.menuHamb.click();
@@ -88,9 +74,9 @@ class LoginPage extends Page {
         await browser.back();
         await this.menuHamb.click();
         await this.menuLogout.click();
-        await this.login(username, password);
-        await expect(this.productPage).toBeExisting()
-        await expect(this.productPage).toHaveText(
+        await LoginPage.firstLogin('standard_user', 'secret_sauce');
+        await expect(LoginPage.productPage).toBeExisting()
+        await expect(LoginPage.productPage).toHaveText(
             expect.stringContaining('Swag Labs'))
         await this.menuHamb.click();
         await this.menuReset.click();
@@ -98,14 +84,7 @@ class LoginPage extends Page {
         await browser.pause(2000)
         await $('.bm-burger-button').click();
         await browser.pause(2000)
-    }*/
-
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    open () {
-        return super.open();
     }
 }
 
-export default new LoginPage();
+export default new Hamburger();
