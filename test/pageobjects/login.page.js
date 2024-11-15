@@ -40,6 +40,16 @@ class LoginPage extends Page {
     get menuAllItems() {
         return $('a#inventory_sidebar_link')
     }
+
+    get menuAbout() {
+        return $('a#about_sidebar_link')
+    }
+
+    get saucePage() {
+        return $('div.MuiBox-root css-lwb5go')
+        //(browser.url('https://www.saucedemo.com/'))
+        //MuiBox-root css-lwb5go
+    }
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using corect username and password and then again with a bad password
@@ -64,6 +74,9 @@ class LoginPage extends Page {
         await expect(this.productPage).toBeExisting()
         await expect(this.productPage).toHaveText(
             expect.stringContaining('Swag Labs'))
+        await this.menuAbout.click();
+        await expect(this.saucePage).toBeExisting
+        await window.history.back();
 
     }
 
