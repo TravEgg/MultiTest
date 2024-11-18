@@ -60,7 +60,11 @@ class Hamburger {
         //MuiBox-root css-lwb5go
     }
 
-    async HambMenu() {
+    get LoginButton() {
+        return $('#login-button')
+    }
+
+    async hambMenu() {
         await this.menuHamb.click();
         //test the Cancel Button in the hamburger menu
         await this.cancelHamb.click();
@@ -74,6 +78,7 @@ class Hamburger {
         await browser.back();
         await this.menuHamb.click();
         await this.menuLogout.click();
+        await expect(this.LoginButton).toBeExisting();
         await LoginPage.firstLogin('standard_user', 'secret_sauce');
         await expect(LoginPage.productPage).toBeExisting()
         await expect(LoginPage.productPage).toHaveText(
@@ -83,6 +88,7 @@ class Hamburger {
         await this.cancelHamb.click();
         await browser.pause(2000)
         await $('.bm-burger-button').click();
+        await this.cancelHamb.click();
         await browser.pause(2000)
     }
 }
