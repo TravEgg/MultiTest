@@ -1,8 +1,8 @@
 import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals'
-import Page from './page.js';
+import Base from './Base.js';
 import { expect } from '@wdio/globals'
-import LoginPage from './login.page.js';
+import LoginPage from './Login.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page

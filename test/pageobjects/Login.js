@@ -1,12 +1,12 @@
 import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals'
-import Page from './page.js';
+import Base from './Base.js';
 import { expect } from '@wdio/globals'
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends Page {
+class LoginPage extends Base {
     /**
      * define selectors using getter methods
      */

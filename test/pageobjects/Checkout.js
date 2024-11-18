@@ -1,6 +1,6 @@
 import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals'
-import Page from './page.js';
+import Base from './Base.js';
 import { expect } from '@wdio/globals'
 import ShoppingCart from './ShoppingCart.js';
 
