@@ -1,8 +1,9 @@
 import { $ } from '@wdio/globals'
-import { browser } from '@wdio/globals'
+import { browser } from '@wdio/globals';
 import Page from './page.js';
-import { expect } from '@wdio/globals'
+import { expect } from '@wdio/globals';
 import LoginPage from './login.page.js';
+import ShoppingCart from './ShoppingCart.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -65,6 +66,11 @@ class Hamburger {
     }
 
     async hambMenu() {
+        await ShoppingCart.allThingsItem.click()
+        await expect(ShoppingCart.AllThingsPage).toBeExisting();
+        await expect(ShoppingCart.AllThingsPage).toHaveText(
+            expect.stringContaining('Back to products')
+        )
         await this.menuHamb.click();
         //test the Cancel Button in the hamburger menu
         await this.cancelHamb.click();
@@ -73,6 +79,7 @@ class Hamburger {
         await expect(this.productPage).toBeExisting()
         await expect(this.productPage).toHaveText(
             expect.stringContaining('Swag Labs'))
+        await this.menuHamb.click();
         await this.menuAbout.click();
         await expect(this.saucePage).toBeExisting
         await browser.back();
@@ -83,13 +90,17 @@ class Hamburger {
         await expect(LoginPage.productPage).toBeExisting()
         await expect(LoginPage.productPage).toHaveText(
             expect.stringContaining('Swag Labs'))
+        await ShoppingCart.AllThingsT.click();
+        await expect(ShoppingCart.CartBadge).toBeExisting();
         await this.menuHamb.click();
         await this.menuReset.click();
         await this.cancelHamb.click();
-        await browser.pause(2000)
-        await $('.bm-burger-button').click();
-        await this.cancelHamb.click();
-        await browser.pause(2000)
+        await ShoppingCart.removeAttTshirt.click();
+        
+        // await browser.pause(2000)
+        // await $('.bm-burger-button').click();
+        // await this.cancelHamb.click();
+        // await browser.pause(2000)
     }
 }
 

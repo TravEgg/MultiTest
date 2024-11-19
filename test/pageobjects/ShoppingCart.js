@@ -38,6 +38,10 @@ class ShoppingCart {
         return $('#add-to-cart')
     }
 
+    get allThingsItem() {
+        return $('a#item_3_img_link')
+    }
+
     get AllThingsT() {
         // return $('a#item_3_img_link')
         return $('button[id="add-to-cart-test.allthethings()-t-shirt-(red)"]')
@@ -65,6 +69,20 @@ class ShoppingCart {
         return $('.shopping_cart_link')
     }
 
+    get addToCart() {
+        return $('button[class="btn btn_primary btn_small btn_inventory "]')
+    }
+
+    get removeFromCart() {
+        return $('.btn.btn_secondary.btn_small.cart_button')
+    }
+
+    get removeAttTshirt() {
+        return $('button[id="remove-test.allthethings()-t-shirt-(red)"]')
+    }
+
+
+
     //AddItems = [this.AddBackpack, this.AddBikeLight, this.addBoltT, this.addJacket, this.addOnsie]
 
     async cartTest() {
@@ -85,10 +103,23 @@ class ShoppingCart {
         await this.addBoltT.click();
         await this.addJacket.click();
         await this.addOnsie.click();  
+
+        // while (await this.addToCart.isExisting() && (await this.addToCart.getText()) === 'Add to Cart') {
+        //     await this.addToCart.click(); // Click the button
+        //     await browser.pause(2000);
+        //     console.log("Button clicked!");
+        // }
+        // console.log("Button  no longer matches the condition or does not exist.");
         await expect(this.CartButton).toBeExisting();     
         await this.CartButton.click();
+        // while (this.removeFromCart && (await this.removeFromCart.getText()) === 'Remove') {
+        //     await this.removeFromCart.click();
+        // }
         await expect(this.ContShop).toBeExisting();
         await this.ContShop.click();
+        // while (this.addToCart && (await this.addToCart.getText()) === 'Add to Cart') {
+        //     await this.addToCart.click();
+        // }
         await expect(this.CartButton).toBeExisting();     
         await this.CartButton.click();
         
