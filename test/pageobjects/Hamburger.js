@@ -1,9 +1,8 @@
 import { $ } from '@wdio/globals'
-import { browser } from '@wdio/globals';
+import { browser } from '@wdio/globals'
 import Page from './page.js';
-import { expect } from '@wdio/globals';
+import { expect } from '@wdio/globals'
 import LoginPage from './login.page.js';
-import ShoppingCart from './ShoppingCart.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page

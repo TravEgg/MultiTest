@@ -1,5 +1,5 @@
 import { expect } from '@wdio/globals'
-import LoginPage from '../pageobjects/login.page.js'
+import LoginPage from '../pageobjects/Login.js'
 import Hamburger from '../pageobjects/Hamburger.js'
 import ShoppingCart from '../pageobjects/ShoppingCart.js'
 import Checkout from '../pageobjects/Checkout.js'
