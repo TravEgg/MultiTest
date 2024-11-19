@@ -52,20 +52,26 @@ class CheckoutPage {
      * e.g. to login using corect username and password and then again with a bad password
      */
     async checkout (firstname, lastname, Zip) {
+        // Checkout button 
         await expect(this.checkoutButton).toBeExisting();
         await this.checkoutButton.click();
+        //Fill in Customer info
         await this.inputUsername.setValue(firstname);
         await this.inputLastName.setValue(lastname);
         await this.inputZip.setValue(Zip);
+        //Cancel button test
         await this.cancelButton.click();
         await expect(this.checkoutButton).toBeExisting();
+        //Return and fill out info again
         await this.checkoutButton.click();
         await this.inputUsername.setValue(firstname);
         await this.inputLastName.setValue(lastname);
         await this.inputZip.setValue(Zip);
+        //Continue to checkout
         await this.continueButton.click();
         await expect(this.finishButton).toBeExisting();
         await this.finishButton.click();
+        //Return to Main page
         await expect(this.backHome).toBeExisting();
         await this.backHome.click();
     }

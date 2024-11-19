@@ -43,7 +43,6 @@ class ShoppingCart {
     }
 
     get AllThingsT() {
-        // return $('a#item_3_img_link')
         return $('button[id="add-to-cart-test.allthethings()-t-shirt-(red)"]')
     }
 
@@ -61,8 +60,10 @@ class ShoppingCart {
 
     get checkoutbutton() {
         return $('#checkout')
-        //(browser.url('https://www.saucedemo.com/'))
-        //MuiBox-root css-lwb5go
+    }
+
+    get cancelButton() {
+        return $('#cancel');
     }
 
     get CartButton() {
@@ -103,30 +104,7 @@ class ShoppingCart {
         return $('//div[contains(text(), "Fleece")]')
     }
 
-
-
-
-
-    //AddItems = [this.AddBackpack, this.AddBikeLight, this.addBoltT, this.addJacket, this.addOnsie]
-
     async cartTest() {
-        // await this.AllThingsT.click();
-        // // await this.addAttTshirt.click();
-        // // await expect(this.CartBadge).toBeExisting();
-        // // await expect(this.CartBadge).toHaveText(
-        // //     expect.stringContaining('1')
-        // // )
-        // // await expect(this.AllThingsPage).toBeExisting();
-        // // await expect(this.AllThingsPage).toHaveText(
-        // //     expect.stringContaining('Back to products')
-        // // )
-        // // await Hamburger.menuHamb.click();
-        // // await Hamburger.menuAllItems.click();
-        // await this.AddBackpack.click();
-        // await this.AddBikeLight.click();
-        // await this.addBoltT.click();
-        // await this.addJacket.click();
-        // await this.addOnsie.click();  
 
         // Add all items to the cart
         while (await this.addToCart.isExisting()) {
@@ -143,7 +121,8 @@ class ShoppingCart {
             console.log("Button clicked!");
         }
         console.log("Button  no longer matches the condition or does not exist.");
-        // return to inventory and re-add all items
+        
+        // Continue Shopping button test and re-add all items
         await expect(this.ContShop).toBeExisting();
         await this.ContShop.click();
         while (await this.addToCart.isExisting()) {
@@ -173,27 +152,25 @@ class ShoppingCart {
         await this.onsiePage.click();
         await expect(this.ItemPage).toBeExisting();
         await browser.back();
-        browser.pause(500);
         await expect(this.allThingsTPage).toBeExisting();
         await this.allThingsTPage.click();
         await expect(this.AllThingsPage).toBeExisting();
-        browser.pause(500);
         await browser.back();
         await expect(this.FleecePage).toBeExisting();
         await this.FleecePage.click();
         await expect(this.ItemPage).toBeExisting();
         await browser.back();
 
+        // Checkout button test
+        await expect(this.checkoutbutton).toBeExisting();
+        await this.checkoutbutton.click();
+        await expect (this.cancelButton).toBeExisting();
+        await this.cancelButton.click();
+        await expect(this.checkoutbutton).toBeExisting();
+
 
         
     }
 }
-/*async addItemsLoop() {
-        await this.CartTest();
-        for (let i=1; i < this.AddItems.length; i++){
-        await this.AddItems[i].click();
-        await expect(this.CartBadge).toBeExisting()
-        await expect(this.CartBadge).toHaveText(
-            expect.stringContaining('[i+1]'))
-        }*/
+
 export default new ShoppingCart();

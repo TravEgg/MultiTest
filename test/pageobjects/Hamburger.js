@@ -66,23 +66,31 @@ class Hamburger {
     }
 
     async hambMenu() {
+        // Add Item and Navigate to individual page to test All items and be ready for Reset App State
         await ShoppingCart.allThingsItem.click()
         await expect(ShoppingCart.AllThingsPage).toBeExisting();
         await expect(ShoppingCart.AllThingsPage).toHaveText(
             expect.stringContaining('Back to products')
         )
-        await this.menuHamb.click();
+        
         //test the Cancel Button in the hamburger menu
+        await this.menuHamb.click();
         await this.cancelHamb.click();
+       
+        //All Items option test
         await this.menuHamb.click();
         await this.menuAllItems.click();
         await expect(this.productPage).toBeExisting()
         await expect(this.productPage).toHaveText(
             expect.stringContaining('Swag Labs'))
+        
+        //About button test
         await this.menuHamb.click();
         await this.menuAbout.click();
         await expect(this.saucePage).toBeExisting
         await browser.back();
+        
+        //Logout option test
         await this.menuHamb.click();
         await this.menuLogout.click();
         await expect(this.LoginButton).toBeExisting();
@@ -96,11 +104,6 @@ class Hamburger {
         await this.menuReset.click();
         await this.cancelHamb.click();
         await ShoppingCart.removeAttTshirt.click();
-        
-        // await browser.pause(2000)
-        // await $('.bm-burger-button').click();
-        // await this.cancelHamb.click();
-        // await browser.pause(2000)
     }
 }
 
